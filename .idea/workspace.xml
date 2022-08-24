@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6f8d719-8c8b-46ba-a0a7-2a1412a70dd4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/algorithm_hw/2005_pascaltri.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm_hw/2005_pascaltri.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm_hw/4869_stickpaper.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm_hw/4869_stickpaper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push.bat" beforeDir="false" afterPath="$PROJECT_DIR$/push.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
