@@ -1,6 +1,7 @@
 T= 10
 
 for tc in range(1, T+1):
+    N = int(input())
     s = list(input())
     stack = []
     top =0
@@ -40,7 +41,21 @@ for tc in range(1, T+1):
         while top != 0:
             rst += stack.pop()
             top -= 1
+    # print(rst)
     '''==================================================
     여기부터 후위 표기법 계산기'''
+
     c_stack = []
+    ops = {'+': (lambda x,y : x + y), '*': (lambda x,y : x*y) }
+
     for i in rst:
+        if i.isnumeric():
+            c_stack.append(i)
+        else:
+            a = c_stack.pop()
+            b = c_stack.pop()
+            c_stack.append(ops[i](int(a), int(b)))
+
+    print(f'#{tc}', c_stack[0])
+
+
