@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>안녕하세요, greeting</h2>
+    <p>{{age}}살의 인사를 받았다!</p>
+
+    {% if result %}
+        <p>{{word}}는 회문</p>
+    {% else %}
+        <p>{{word}}는 회문아님</p>
+    {% endif %}
+
+{% endblock content %}
+
+

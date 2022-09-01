@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+        <h2>index 대리에게 도달하셨군요!</h2>
+        {% comment %} 
+        <h2>{{name}}님 환영합니다!</h2>
+        <hr>
+        <h2>전체음식 : {{foods}}</h2>
+        <h2>첫번째 : {{foods.0}}</h2>
+        <h2>사는도시: {{address.city}}</h2>
+        <hr>
+        <h2>랜덤 넘버 : {{pick}}</h2>  {% endcomment %}
+        <h3>{{food|join:','}}</h3>
+
+        {% for food in foods %}
+        <p>{{food}}</p>    
+        <p>{{food|length}}</p>
+        {% endfor %}    
+
+        {% if '피자' in foods %}
+        <p>피자먹고싶다</p>
+        {% endif %}
+
+    {% endblock content %}
+</body>
+</html>
