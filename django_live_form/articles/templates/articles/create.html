@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+  <h1>CREATE</h1>
+  <form action="{% url 'articles:create' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    
+    
+    <input type="submit">
+  </form>
+  <hr>
+  <a href="{% url 'articles:index' %}">뒤로가기</a>
+
+
+  <hr>
+  <h2>수동으로 form 작성</h2>
+  <form action="#">
+    <div>
+      {{form.title.errors}}
+      {{form.title.label_tag}}
+      {{form.title}}
+    </div>
+    <div>
+      {{form.content.errors}}
+      {{form.content.label_tag}}
+      {{form.content}}
+    </div>
+  </form>
+
+  <hr>
+
+  <h2>looping over the form's fields</h2>
+  <form action="#"></form>
+    {% for field in form  %}
+      {{field.errors}}
+      {{field.label_tag}}
+      {{field}}
+
+    {% endfor %}
+
+  <hr>
+
+  <h2>bootstrap v5사용</h2>
+  <form action="#">
+    {% bootstrap_form form %}
+  </form>
+
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  {% endbuttons %}
+
+{% endblock content %}
+
+
+
+
