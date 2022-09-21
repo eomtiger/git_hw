@@ -32,12 +32,12 @@ for tc in range(1, 1+T):
             K = k
         else:
             break
-    home_set = set()
 
-    for i in range(N):
-        for j in range(N):
-            if mat[i][j] == 1:
-                home_set.add((i, j))
+    # home_set = set()
+    # for i in range(N):
+    #     for j in range(N):
+    #         if mat[i][j] == 1:
+    #             home_set.add((i, j))
 
 
 
@@ -63,9 +63,15 @@ for tc in range(1, 1+T):
                 q.append((i, j))
                 cnt = 0
                 profit = 0
-                if (i, j) in home_set:
+                cost = b*b + (b-1)*(b-1)
+                if mat[i][j] == 1:
                     cnt += 1
-                    profit += 1
+                    profit += M
+                # margin = profit - cost
+                # if margin >= 0 and cnt > max_home:
+                #     max_home = cnt
+                # if max_home == home:
+                #     break
 
                 while q:
                     y = q[0][0]
@@ -76,32 +82,43 @@ for tc in range(1, 1+T):
                         ax = x + dx[k]
                         if 0 <= ay < N and 0 <= ax < N and (ay, ax) not in visited and abs(ay-i)+abs(ax-j) <= b-1:
                             visited.append((ay, ax))
+                            q.append((ay, ax))
                             # print(visited)
-                            if mat[ax][ay] == 1:
+                            if mat[ay][ax] == 1:
                                 cnt += 1
                                 profit += M
-                            q.append((ay, ax))
 
+                            margin = profit - cost
+                            if margin >= 0 and cnt > max_home:
+                                max_home = cnt
+                            if max_home == home:
+                                break
+                    margin = profit - cost
+                    if margin >= 0 and cnt > max_home:
+                        max_home = cnt
                     q.popleft()
-                # print(visited)
-                # print(len(visited))
 
-                #수익을 구해보자
-                profit = 0
-                cnt = 0             #마름모 영역 안 집의 개수
-                for v in visited:
-                    if mat[v[0]][v[1]] == 1:
-                        cnt += 1
-                        profit += M
-
-                #마진을 구해보자
-                cost = b*b + (b-1)*(b-1)
-                margin = profit - cost
-                # print('p:', profit)
-                # print('c:', max_cost)
-                # print('m:', margin)
-                if margin >= 0 and cnt > max_home:
-                    max_home = cnt
+                    if max_home == home:
+                        break
+                # # print(visited)
+                # # print(len(visited))
+                #
+                # #수익을 구해보자
+                # profit = 0
+                # cnt = 0             #마름모 영역 안 집의 개수
+                # for v in visited:
+                #     if mat[v[0]][v[1]] == 1:
+                #         cnt += 1
+                #         profit += M
+                #
+                # #마진을 구해보자
+                # cost = b*b + (b-1)*(b-1)
+                # margin = profit - cost
+                # # print('p:', profit)
+                # # print('c:', max_cost)
+                # # print('m:', margin)
+                # if margin >= 0 and cnt > max_home:
+                #     max_home = cnt
 
                 if max_home == home:
                     break
