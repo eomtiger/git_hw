@@ -1,40 +1,43 @@
 T = int(input())
 
+def room(i, j, cnt, s):
+    global max_v, min_v
+    for k in range(4):
+        if 0 <= i+dy[k] < N and 0 <= j+dx[k] < N and mat[i+dy[k]][j+dx[k]] == mat[i][j] + 1:
+            room(i+dy[k], j+dx[k], cnt+1, s)
+
+
+    if cnt >= max_v:
+        max_v = cnt
+
+        visited.append((s, cnt))
+        return
+
+
+
+
 for tc in range(1, T+1):
     N = int(input())
     mat = [list(map(int, input().split())) for _ in range(N)]
 
     dy = [-1, 1, 0, 0]
     dx = [0, 0, -1, 1]
+    max_v = 0
+    cnt = 1
     visited = []
-    p = [(N**2+1, 0)]
-
+    min_v = 100000
     for i in range(N):
         for j in range(N):
-            q = []
-            if (i, j) not in visited:
-                visited.append((i, j))
-                q.append((i, j, 1))
-            else:
-                continue
-            # print(q)
-            while q:
-                for k in range(4):
-                    ai = q[0][0]+dy[k]
-                    aj = q[0][1]+dx[k]
-                    # print('k:', k, ai, aj)
-                    if 0 <= ai < N and 0 <= aj < N and mat[ai][aj] == mat[q[0][0]][q[0][1]] + 1:
-                        visited.append((ai, aj))
+            s = mat[i][j]
+            room(i, j, cnt, s)
+    # print(visited)
+    for i in range(len(visited)):
+        if visited[i][1] == max_v and visited[i][0] < min_v:
+            min_v = visited[i][0]
+    print(f'#{tc} {min_v} {max_v}')
 
-                        q.append((ai, aj, q[0][2]+1))
-                        print(q)
-                        if q[0][2] >= p[0][1] and mat[ai][aj] <= p[0][0]:
-                            p[0] = (mat[ai][aj], q[-1][2])
-                            print(p)
 
-                q.pop(0)
 
-    print(p)
 
 
 
