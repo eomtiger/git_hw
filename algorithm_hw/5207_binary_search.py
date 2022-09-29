@@ -1,28 +1,28 @@
 T = int(input())
 
-def search(l, r, i):
-    global cnt, r_cnt, l_cnt
+def search(l, r, i, select):
+    global cnt
 
-    if i > arr[r] or i < arr[l]:
-        return
+    m = (l + r) // 2
 
-    m = (l+r)//2
+    if arr[m] == i:
 
-    if arr[m] == i and r_cnt and l_cnt:
-        cnt += 1
-
-        return
+        return True
 
     elif arr[m] < i:
-        r_cnt += 1
-        search(m+1, r, i)
+        if select == 'right':
+            return False
 
-
+        if search(m+1, r, i, 'right'):
+            return True
 
     elif arr[m] > i:
-        l_cnt += 1
-        search(l, m-1, i)
-    return
+        if select == 'left':
+            return False
+
+        if search(l, m - 1, i, 'left'):
+            return True
+
 
 
 for tc in range(1, 1+T):
@@ -31,30 +31,21 @@ for tc in range(1, 1+T):
     arr = list(map(int, input().split()))
 
     nums = list(map(int, input().split()))
+    arr.sort()
 
-    # print(arr)
-    # print(nums)
+
 
     cnt = 0
-    r_cnt = 0
-    l_cnt = 0
-
-
+    ans =0
 
     for i in nums:
-        if i == arr[(len(arr)-1) // 2]:
-            cnt += 1
+        if i in arr:
+            if search(0, len(arr)-1, i, ''):
+                ans += 1
 
 
-        else:
-            search(0, len(arr)-1, i)
-            r_cnt = 0
-            l_cnt = 0
+    print(f'#{tc} {ans}')
 
-        # print(i, cnt)
-    if cnt == 0:
-        print(f'#{tc} {cnt}')
-    elif cnt and r_cnt and l_cnt:
-        print(f'#{tc} {cnt}')
-    else:
-        print(f'{tc} 0')
+
+
+
