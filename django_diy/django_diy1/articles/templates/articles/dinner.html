@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+
+<html lan = 'en'>
+<head>
+  <!--생략-->
+</head>
+<body>
+  <p>{{pick}}은 {{pick|length}}글자</p>
+  <p>{{foods|join:','}}</p>
+
+  <p> 메뉴판</p>
+  <ul>
+    {% for food in foods  %}
+      <p>{{food}}</p>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'articles:index' %}">뒤로</a>
+</body>
+</html>
